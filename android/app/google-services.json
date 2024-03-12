@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "731055077762",
+    "project_id": "monark-1e8fc",
+    "storage_bucket": "monark-1e8fc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:731055077762:android:30eb2d482fcffd0462379b",
+        "android_client_info": {
+          "package_name": "com.example.crud_monark"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDrpARO_xecVsz7Z41JKMl9FUgTtsKY1IY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
