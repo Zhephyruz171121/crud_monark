@@ -87,6 +87,12 @@ Future<void> registrarUsuario(String email, String password, String nombre,
   }
 }
 
+class CustomAuthException implements Exception {
+  final String message;
+
+  CustomAuthException(this.message);
+}
+
 /// Funcion que inicia sesión utilizando el servicio de autenticación de
 /// Firebase mediante el correo y la contraseña del usuario que se registro
 /// validando su existencia y que coincida con el registro en la base de datos
@@ -97,8 +103,21 @@ Future<UserCredential?> iniciarSesion(String email, String password) async {
         await auth.signInWithEmailAndPassword(email: email, password: password);
     return userCredential;
   } on FirebaseAuthException catch (e) {
-    print(e);
-    return null;
+    String message;
+    if (e.code == 'user-not-found') {
+      message = 'No se encontró una cuenta para ese correo electrónico.';
+    } else if (e.code == 'wrong-password') {
+      message = 'Contraseña incorrecta.';
+    } else if (e.code == 'invalid-email') {
+      message = 'Correo electrónico no válido.';
+    } else if (e.code == 'user-disabled') {
+      message = 'Usuario deshabilitado.';
+    } else if (e.code == 'too-many-requests') {
+      message = 'Demasiados intentos de inicio de sesión fallidos.';
+    } else {
+      message = 'Ocurrió un error desconocido.';
+    }
+    throw CustomAuthException(message);
   }
 }
 
